@@ -10,11 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180626031252) do
+ActiveRecord::Schema.define(version: 20180629215326) do
+
+  create_table "alien_powers", force: :cascade do |t|
+    t.integer "alien_id"
+    t.integer "power_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["alien_id"], name: "index_alien_powers_on_alien_id"
+    t.index ["power_id"], name: "index_alien_powers_on_power_id"
+  end
 
   create_table "aliens", force: :cascade do |t|
     t.string "name"
     t.integer "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "planet_id"
+    t.index ["planet_id"], name: "index_aliens_on_planet_id"
+  end
+
+  create_table "planets", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "powers", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
